@@ -1,6 +1,7 @@
 /vendor/*
 /vendor/
 .idea/
+.idea/*
 *.php~
 .DS_Store
 composer.lock
