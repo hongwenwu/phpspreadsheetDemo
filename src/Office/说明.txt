@@ -1,0 +1,28 @@
+// excel 表内字段
+    const fields = [
+        'id'          => '编号',
+        'coverImage'  => '封面图片',
+        'title'       => '文章标题',
+        'description' => '文章描述',
+        'link'        => '文章连接',
+        'deleted'     => '是否删除',
+        'createdAt'   => '创建时间',
+        'updatedAt'   => '更新时间'
+    ];
+
+public function excelArticle()
+{
+    $articles = $this->getAll();
+    foreach ($articles as &$v) {
+        $v['link']       = 'http:// www.baidu.com';
+        $v['coverImage'] = $v['coverImage'][0];
+    }
+
+    Excel::exportAction(
+        ['fields' => self::fields,
+         'data'   => $articles,
+         'extra'  => [
+             'title' => '测试导出文章excel'
+         ]
+        ], 'helloWorld');
+}
